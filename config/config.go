@@ -40,15 +40,15 @@ func LoadConfig() (*Config, error) {
 
 	// Initialize config with environment variables
 	cfg := &Config{
-		DB_HOST:        getEnv("DB_HOST"),
-		DB_PORT:        getEnv("DB_PORT"),
-		DB_USERNAME:    getEnv("DB_USERNAME"),
-		DB_PASSWORD:    getEnv("DB_PASSWORD"),
-		DB_AUTH_SOURCE: getEnv("DB_AUTH_SOURCE"),
+		DB_HOST:        GetEnv("DB_HOST"),
+		DB_PORT:        GetEnv("DB_PORT"),
+		DB_USERNAME:    GetEnv("DB_USERNAME"),
+		DB_PASSWORD:    GetEnv("DB_PASSWORD"),
+		DB_AUTH_SOURCE: GetEnv("DB_AUTH_SOURCE"),
 
-		REDIS_HOST:     getEnv("REDIS_HOST"),
-		REDIS_PORT:     getEnv("REDIS_PORT"),
-		REDIS_PASSWORD: getEnv("REDIS_PASSWORD"),
+		REDIS_HOST:     GetEnv("REDIS_HOST"),
+		REDIS_PORT:     GetEnv("REDIS_PORT"),
+		REDIS_PASSWORD: GetEnv("REDIS_PASSWORD"),
 	}
 
 	// Validate required fields
@@ -59,8 +59,8 @@ func LoadConfig() (*Config, error) {
 	return cfg, nil
 }
 
-// getEnv is a helper function to get environment variables with empty string fallback
-func getEnv(key string) string {
+// GetEnv is a helper function to get environment variables with empty string fallback
+func GetEnv(key string) string {
 	value := os.Getenv(key)
 	if value == "" {
 		return "" // Return empty string if not set
