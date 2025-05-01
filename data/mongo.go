@@ -12,13 +12,6 @@ import (
 
 // ConnectMongo establishes a connection to MongoDB using configuration
 // Returns a MongoDB client instance and any connection error
-//
-// Usage:
-// mongoClient, err := ConnectMongo()
-//
-//	if err != nil {
-//	    log.Fatal("Failed to connect to MongoDB:", err)
-//	}
 func ConnectMongo() (*mongo.Client, error) {
 	// Load configuration from environment variables
 	cfg, err := config.LoadConfig()

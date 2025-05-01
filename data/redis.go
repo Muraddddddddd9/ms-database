@@ -10,13 +10,6 @@ import (
 
 // ConnectRedis establishes a connection to Redis server using configuration
 // Returns a Redis storage instance and any connection error
-//
-// Usage:
-// redisStorage, err := ConnectRedis()
-//
-//	if err != nil {
-//	    log.Fatal("Failed to connect to Redis:", err)
-//	}
 func ConnectRedis() (*redis.Storage, error) {
 	// Load configuration from environment variables
 	cfg, err := config.LoadConfig()

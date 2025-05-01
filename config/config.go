@@ -8,7 +8,7 @@ import (
 )
 
 // Config holds all application configuration parameters
-// Contains settings for database, Redis, and admin credentials
+// Contains settings for database, Redis
 type Config struct {
 	// Database configuration
 	DB_HOST        string `env:"DB_HOST"`        // MongoDB host address
@@ -25,13 +25,6 @@ type Config struct {
 
 // LoadConfig loads configuration from .env file and environment variables
 // Returns a Config struct populated with values or an error if loading fails
-//
-// Example:
-// cfg, err := LoadConfig()
-//
-//	if err != nil {
-//	    log.Fatal("Failed to load config:", err)
-//	}
 func LoadConfig() (*Config, error) {
 	// Try loading .env file (ignored if not present)
 	if err := godotenv.Load(); err != nil {
