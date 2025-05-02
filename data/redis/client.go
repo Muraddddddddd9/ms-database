@@ -23,7 +23,7 @@ func Connect() (*redis.Storage, error) {
 
 	storage := redis.New(redis.Config{
 		Host:     cfg.REDIS_HOST,
-		Port:     cfg.MONGO_PORT,
+		Port:     cfg.REDIS_PORT,
 		Password: cfg.REDIS_PASSWORD,
 		Database: cfg.REDIS_DB,
 	})
