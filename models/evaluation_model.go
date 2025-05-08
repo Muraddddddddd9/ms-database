@@ -5,7 +5,7 @@ import (
 )
 
 type EvaluationModel struct {
-	ID      primitive.ObjectID `bson:"_id" json:"_id"`
+	ID      primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
 	Value   string             `bson:"value" json:"value"`
 	Date    string             `bson:"date" json:"date"`
 	Student primitive.ObjectID `bson:"student" json:"student"`
