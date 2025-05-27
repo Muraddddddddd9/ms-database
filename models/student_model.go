@@ -10,7 +10,7 @@ type StudentsModel struct {
 	Group      primitive.ObjectID `bson:"group" json:"group"`
 	Email      string             `bson:"email" json:"email"`
 	Password   string             `bson:"password" json:"password"`
-	Telegram   TelegramParam      `bson:"telegram" json:"telegram"`
+	Telegram   int64              `bson:"telegram" json:"telegram"`
 	Diplomas   []string           `bson:"diplomas" json:"diplomas"`
 	IPs        []string           `bson:"ips" json:"ips"`
 	Status     primitive.ObjectID `bson:"status" json:"status"`
@@ -24,13 +24,8 @@ type StudentsWithGroupAndStatusModel struct {
 	Group      string             `bson:"group" json:"group"`
 	Email      string             `bson:"email" json:"email"`
 	Password   string             `bson:"password" json:"password"`
-	Telegram   TelegramParam      `bson:"telegram" json:"telegram"`
+	Telegram   int64              `bson:"telegram" json:"telegram"`
 	Diplomas   []string           `bson:"diplomas" json:"diplomas"`
 	IPs        []string           `bson:"ips" json:"ips"`
 	Status     string             `bson:"status" json:"status"`
-}
-
-type TelegramParam struct {
-	Username string `bson:"username" json:"username"`
-	ChatID   string `bson:"chat_id" json:"chat_id"`
 }
