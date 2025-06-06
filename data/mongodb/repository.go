@@ -124,7 +124,7 @@ func (r *Repository[Model, AggregateResult]) AggregateAll(ctx context.Context, p
 	return result, nil
 }
 
-func (r *Repository[Model, AggregateResult]) CountDocuments(ctx context.Context, filter *Model, opts ...*options.CountOptions) (int64, error) {
+func (r *Repository[Model, AggregateResult]) CountDocuments(ctx context.Context, filter interface{}, opts ...*options.CountOptions) (int64, error) {
 	count, err := r.collection.CountDocuments(ctx, filter, opts...)
 	if err != nil {
 		return 0, err
