@@ -33,8 +33,31 @@ func (r *Repository[Model, AggregateResult]) InsertOne(ctx context.Context, docu
 	return insertOneResult.InsertedID, nil
 }
 
+func (r *Repository[Model, AggregateResult]) InsertMany(ctx context.Context, document *[]Model, opts ...*options.InsertManyOptions) ([]interface{}, error) {
+	docsInterface := make([]interface{}, len(*document))
+	for i := range *document {
+		docsInterface[i] = (*document)[i]
+	}
+
+	insertManyResult, err := r.collection.InsertMany(ctx, docsInterface, opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	return insertManyResult.InsertedIDs, nil
+}
+
 func (r *Repository[Model, AggregateResult]) DeleteOne(ctx context.Context, filter interface{}, opts ...*options.DeleteOptions) error {
 	_, err := r.collection.DeleteOne(ctx, filter, opts...)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *Repository[Model, AggregateResult]) DeleteMany(ctx context.Context, filter interface{}, opts ...*options.DeleteOptions) error {
+	_, err := r.collection.DeleteMany(ctx, filter, opts...)
 	if err != nil {
 		return err
 	}
@@ -99,4 +122,22 @@ func (r *Repository[Model, AggregateResult]) AggregateAll(ctx context.Context, p
 	}
 
 	return result, nil
+}
+
+func (r *Repository[Model, AggregateResult]) CountDocuments(ctx context.Context, filter *Model, opts ...*options.CountOptions) (int64, error) {
+	count, err := r.collection.CountDocuments(ctx, filter, opts...)
+	if err != nil {
+		return 0, err
+	}
+
+	return count, err
+}
+
+func (r *Repository[Model, AggregateResult]) Drop(ctx context.Context) error {
+	err := r.collection.Drop(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
