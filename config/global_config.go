@@ -20,6 +20,14 @@ type GlobalConfig struct {
 	REDIS_HOST     string `env:"REDIS_HOST"`
 	REDIS_PORT     int    `env:"REDIS_PORT"`
 	REDIS_PASSWORD string `env:"REDIS_PASSWORD"`
+
+	S3_ENDPOINT           string `env:"S3_ENDPOINT"`
+	S3_REGION             string `env:"S3_REGION"`
+	S3_CREDENTIALS_ID     string `env:"S3_CREDENTIALS_ID"`
+	S3_CREDENTIALS_SECRET string `env:"S3_CREDENTIALS_SECRET"`
+	S3_CREDENTIALS_TOKEN  string `env:"S3_CREDENTIALS_TOKEN"`
+	S3_DISABLE_SSL        bool   `env:"S3_DISABLE_SSL"`
+	S3_FORCE_PATH_STYLE   bool   `env:"S3_FORCE_PATH_STYLE"`
 }
 
 func LoadConfig() (*GlobalConfig, error) {
@@ -39,6 +47,14 @@ func LoadConfig() (*GlobalConfig, error) {
 		REDIS_HOST:     GetEnv("REDIS_HOST"),
 		REDIS_PORT:     GetEnvInt("REDIS_PORT"),
 		REDIS_PASSWORD: GetEnv("REDIS_PASSWORD"),
+
+		S3_ENDPOINT:           GetEnv("S3_ENDPOINT"),
+		S3_REGION:             GetEnv("S3_REGION"),
+		S3_CREDENTIALS_ID:     GetEnv("S3_CREDENTIALS_ID"),
+		S3_CREDENTIALS_SECRET: GetEnv("S3_CREDENTIALS_SECRET"),
+		S3_CREDENTIALS_TOKEN:  GetEnv("S3_CREDENTIALS_TOKEN"),
+		S3_DISABLE_SSL:        GetEnvBool("S3_DISABLE_SSL"),
+		S3_FORCE_PATH_STYLE:   GetEnvBool("S3_FORCE_PATH_STYLE"),
 	}
 
 	return cfg, nil
@@ -62,4 +78,9 @@ func GetEnvInt(key string) int {
 		return 0
 	}
 	return int(intValue)
+}
+
+func GetEnvBool(key string) bool {
+	value := os.Getenv(key)
+	return value == "true"
 }
