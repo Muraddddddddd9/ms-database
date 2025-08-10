@@ -22,6 +22,17 @@
 - **S3** - для хранения файлов
 - **Docker** — развертывание проекта
 
+# ⚡️ Быстрый старт
+Билд Docker-compose
+```bash
+docker-compose build
+```
+
+Поднятие Docker-compose
+```bash
+docker-compose up
+```
+
 # 🧩 Остальные
 - <strong>[MS-admin](https://github.com/Muraddddddddd9/ms-admin)</strong> - микросервис (необходимый)
 - <strong>[MS-common](https://github.com/Muraddddddddd9/ms-common)</strong> - микросервис (необходимый)
